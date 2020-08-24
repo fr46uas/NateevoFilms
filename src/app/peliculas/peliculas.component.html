@@ -1,26 +1,23 @@
 <div class="wrapper">
+    <!-- FORMULARIO PARA LA BUSQUEDA DE PELÍCULAS O SERIES -->
     <form [formGroup]="buscador" (ngSubmit)="onSubmit()" novalidate>
         <div class="form-row">
             <div class="col-md-2 mb-3">
                 <input type="text" class="form-control" formControlName="titulo" placeholder="Titulo">
-
             </div>
             <div class="col-md-2 mb-3">
                 <input type="text" class="form-control" formControlName="ano" placeholder="Año">
-
             </div>
             <div id="btn" class="col-md-2 text-center">
                 <input type="submit" value="Buscar" class="btn btn-success" [disabled]="buscador.invalid">
                 <input (click)="reset()" type="reset" value="Reset" class="btn btn-danger">
             </div>
-
         </div>
     </form>
-
     <p *ngIf="arrPeliculas === undefined" class="resultados font-weight-bold text-center"
         style="font-size: 30px; margin-top: 40px;"> No se encuentran
         resultados </p>
-
+    <!-- CARDS CON LOS DATOS DE LAS PELÍCULAS -->
     <div class="card shadow" style="width: 18rem;" (click)="detalleModal(film.Title)" *ngFor="let film of arrPeliculas">
         <img *ngIf="film.Poster != 'N/A'" [src]="film.Poster" class="card-img-top" (click)="openLG(detalles)" alt="...">
         <img *ngIf="film.Poster === 'N/A'" src="../../assets/images/no.image.jpg" (click)="openLG(detalles)"
@@ -28,17 +25,15 @@
         <ul class="list-group list-group-flush">
             <li id="titulo" class="list-group-item"><strong>Titulo:</strong> {{film.Title}}</li>
             <li id="año" class="list-group-item"><strong>Año:</strong> {{film.Year}}</li>
-
         </ul>
     </div>
-
+    <!-- MODAL CON LOS DETALLES DE LA PELÍCULA -->
     <ng-template #detalles let-modal>
         <div class="detalles">
             <div class="modal-header" style="float:left">
                 <img *ngIf="peliculas.Poster != 'N/A'" src="{{peliculas.Poster}}" alt="">
                 <img *ngIf="peliculas.Poster === 'N/A'" src="../../assets/images/no.image.jpg" class="card-img-top">
             </div>
-
             <div class="modal-body" style="float:left">
                 <li class="list-group-item"><strong>Título:</strong> {{peliculas.Title}}</li>
                 <li class="list-group-item"><strong>Año:</strong> {{peliculas.Year}}</li>
@@ -52,5 +47,4 @@
             <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cerrar</button>
         </div>
     </ng-template>
-
 </div>

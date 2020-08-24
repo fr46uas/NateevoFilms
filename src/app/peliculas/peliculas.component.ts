@@ -35,7 +35,7 @@ export class PeliculasComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  // FUNCIÓN PARA LA BUSQUEDA EN EL FORMULARIO
   onSubmit() {
     this.filmsService.getBuscar(this.buscador.value).subscribe((peli) => {
       this.arrPeliculas = [];
@@ -43,7 +43,7 @@ export class PeliculasComponent implements OnInit {
       this.arrPeliculas = this.peliculas.Search;
     });
   }
-
+  // FUNCIÓN PARA RESETEAR LA BUSQUEDA
   reset() {
     this.arrPeliculas = [];
     this.filmsService.getFilms().subscribe((res) => {
@@ -51,15 +51,15 @@ export class PeliculasComponent implements OnInit {
       this.arrPeliculas = this.peliculas.Search;
     });
   }
-
+  // FUNCIÓN PARA ABRIR EL MODAL
+  openLG(detalles) {
+    this.modal.open(detalles, { size: 'lg' });
+  }
+  // FUNCION PARA MOSTRAR LOS DETALLES DE LA PELICULA EN EL MODAL
   detalleModal(titulo) {
     this.filmsService.getDetalleFilm(titulo).subscribe((res) => {
       this.peliculas = res;
     });
-  }
-
-  openLG(detalles) {
-    this.modal.open(detalles, { size: 'lg' });
   }
 
 }
