@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmsService } from '../films.service';
-import { FormsModule, FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -12,17 +14,21 @@ export class PeliculasComponent implements OnInit {
 
   peliculas: any;
   arrPeliculas: [];
-  formBuscar: FormGroup;
+  buscador: FormGroup;
 
-  constructor(private filmsService: FilmsService) {
+  constructor(private filmsService: FilmsService, private router: Router, private modal: NgbModal) {
+
+    this.buscador = new FormGroup({
+      titulo: new FormControl('', [
+        Validators.required
+      ]),
+      ano: new FormControl(''),
+    });
 
     this.filmsService.getFilms().subscribe((res) => {
       this.peliculas = res;
       this.arrPeliculas = this.peliculas.Search;
-
-
     });
-
   }
 
   ngOnInit() {
@@ -31,11 +37,12 @@ export class PeliculasComponent implements OnInit {
   tituloFilm(titulo) {
     this.filmsService.getDetalleFilm(titulo).subscribe((res) => {
       this.peliculas = res;
+      console.log(this.peliculas);
     });
   }
 
-  buscar(formData) {
-    this.filmsService.getBuscar(formData).subscribe((peli) => {
+  onSubmit() {
+    this.filmsService.getBuscar(this.buscador.value).subscribe((peli) => {
       this.arrPeliculas = [];
       this.peliculas = peli;
       this.arrPeliculas = this.peliculas.Search;
@@ -48,11 +55,13 @@ export class PeliculasComponent implements OnInit {
   reset() {
     this.arrPeliculas = [];
     this.filmsService.getFilms().subscribe((res) => {
-
       this.peliculas = res;
       this.arrPeliculas = this.peliculas.Search;
-
     });
+  }
+
+  openLG(detalles) {
+    this.modal.open(detalles, { size: 'lg' });
   }
 
 }
