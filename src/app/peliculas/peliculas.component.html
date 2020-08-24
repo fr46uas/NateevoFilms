@@ -1,0 +1,46 @@
+<div class="wrapper">
+    <form class="form-inline" #login="ngForm" (ngSubmit)="buscar(login.value)">
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" name="titulo" placeholder="Titulo" ngModel>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" name="ano" placeholder="Año" ngModel>
+        </div>
+        <button type="submit" value="submit" class="btn btn-primary mb-2">Buscar</button>
+        <button type="reset" (click)="reset()" class="btn btn-danger mb-2">Reset</button>
+    </form>
+
+    <p *ngIf="arrPeliculas == undefined" class="font-weight-bold text-center"
+        style="font-size: 30px; margin-top: 40px;"> No se encuentran
+        resultados </p>
+
+    <div class="card shadow" style="width: 18rem;" (click)="tituloFilm(film.Title)" *ngFor="let film of arrPeliculas">
+        <img *ngIf="film.Poster != 'N/A'" [src]="film.Poster" class="card-img-top" alt="...">
+        <img *ngIf="film.Poster === 'N/A'" src="../../assets/images/no.image.jpg" class="card-img-top">
+        <ul class="list-group list-group-flush">
+            <li id="titulo" class="list-group-item"><strong>Titulo:</strong> {{film.Title}}</li>
+            <li id="año" class="list-group-item"><strong>Año:</strong> {{film.Year}}</li>
+            <li id="info" class="list-group-item"><button type="button" class="btn btn-outline-info" data-toggle="modal"
+                    data-target="#exampleModal">
+                    + Info
+                </button></li>
+        </ul>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

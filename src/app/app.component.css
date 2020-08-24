@@ -1,0 +1,12 @@
+.navbar-brand{
+    font-size: 40px;
+}
+
+.collapse{
+    margin-left: 50px;
+}
+
+.collapse ul li a{
+    font-size: 25px;
+    margin-right: 25px;
+}
