@@ -12,4 +12,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  scroll() {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 950,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }, 500);
+  }
+
 }

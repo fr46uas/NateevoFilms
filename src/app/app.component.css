@@ -1,5 +1,6 @@
 .navbar-brand{
     font-size: 40px;
+    color: #D4AC0D;
 }
 
 .collapse{
@@ -9,4 +10,9 @@
 .collapse ul li a{
     font-size: 25px;
     margin-right: 25px;
+}
+
+.nav-link{
+    color: #D4AC0D;
+
 }

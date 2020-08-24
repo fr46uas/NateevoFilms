@@ -22,7 +22,9 @@ export class PeliculasComponent implements OnInit {
       titulo: new FormControl('', [
         Validators.required
       ]),
-      ano: new FormControl(''),
+      ano: new FormControl('', [
+        Validators.pattern(/^-?(0|[1-9]\d*)?$/)
+      ]),
     });
 
     this.filmsService.getFilms().subscribe((res) => {
@@ -34,22 +36,12 @@ export class PeliculasComponent implements OnInit {
   ngOnInit() {
   }
 
-  tituloFilm(titulo) {
-    this.filmsService.getDetalleFilm(titulo).subscribe((res) => {
-      this.peliculas = res;
-      console.log(this.peliculas);
-    });
-  }
-
   onSubmit() {
     this.filmsService.getBuscar(this.buscador.value).subscribe((peli) => {
       this.arrPeliculas = [];
       this.peliculas = peli;
       this.arrPeliculas = this.peliculas.Search;
-      console.log(this.arrPeliculas.length);
-      console.log(this.arrPeliculas);
     });
-
   }
 
   reset() {
@@ -57,6 +49,12 @@ export class PeliculasComponent implements OnInit {
     this.filmsService.getFilms().subscribe((res) => {
       this.peliculas = res;
       this.arrPeliculas = this.peliculas.Search;
+    });
+  }
+
+  detalleModal(titulo) {
+    this.filmsService.getDetalleFilm(titulo).subscribe((res) => {
+      this.peliculas = res;
     });
   }
 

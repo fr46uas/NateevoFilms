@@ -60,3 +60,11 @@ input.btn{
     background: #212F3D;
 }
 
+.resultados{
+    color: black;
+    background-color: white;
+    width: 500px;
+    border-radius: 5px;
+    margin: 35% 35% 0 35%;
+}
+

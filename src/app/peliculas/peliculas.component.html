@@ -3,35 +3,32 @@
         <div class="form-row">
             <div class="col-md-2 mb-3">
                 <input type="text" class="form-control" formControlName="titulo" placeholder="Titulo">
-                <!-- <p class="error" *ngIf="buscador.controls.titulo.errors?.required">
-                El campo nombre es requerido
-            </p> -->
+
             </div>
             <div class="col-md-2 mb-3">
                 <input type="text" class="form-control" formControlName="ano" placeholder="Año">
-                <!-- <p class="error" *ngIf="buscador.controls.titulo.errors?.required">
-                El campo nombre es requerido
-            </p> -->
+
             </div>
             <div id="btn" class="col-md-2 text-center">
-                <input type="submit" value="Buscar" class="btn btn-primary">
+                <input type="submit" value="Buscar" class="btn btn-success" [disabled]="buscador.invalid">
                 <input (click)="reset()" type="reset" value="Reset" class="btn btn-danger">
             </div>
 
         </div>
     </form>
 
-    <p *ngIf="arrPeliculas === undefined" class="font-weight-bold text-center"
+    <p *ngIf="arrPeliculas === undefined" class="resultados font-weight-bold text-center"
         style="font-size: 30px; margin-top: 40px;"> No se encuentran
         resultados </p>
 
-    <div class="card shadow" style="width: 18rem;" (click)="tituloFilm(film.Title)" *ngFor="let film of arrPeliculas">
+    <div class="card shadow" style="width: 18rem;" (click)="detalleModal(film.Title)" *ngFor="let film of arrPeliculas">
         <img *ngIf="film.Poster != 'N/A'" [src]="film.Poster" class="card-img-top" (click)="openLG(detalles)" alt="...">
         <img *ngIf="film.Poster === 'N/A'" src="../../assets/images/no.image.jpg" (click)="openLG(detalles)"
             class="card-img-top">
         <ul class="list-group list-group-flush">
             <li id="titulo" class="list-group-item"><strong>Titulo:</strong> {{film.Title}}</li>
             <li id="año" class="list-group-item"><strong>Año:</strong> {{film.Year}}</li>
+
         </ul>
     </div>
 
@@ -48,7 +45,7 @@
                 <li class="list-group-item"><strong>Director</strong> {{peliculas.Director}}</li>
                 <li class="list-group-item"><strong>Fecha de estreno:</strong> {{peliculas.Released}}</li>
                 <li class="list-group-item"><strong>Duración:</strong> {{peliculas.Runtime}}</li>
-                <li class="list-group-item"><strong>Genero:</strong> {{peliculas.Genre}}</li>
+                <li class="list-group-item"><strong>Género:</strong> {{peliculas.Genre}}</li>
             </div>
         </div>
         <div class="modal-footer">
