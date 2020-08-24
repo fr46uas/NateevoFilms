@@ -68,3 +68,10 @@ input.btn{
     margin: 35% 35% 0 35%;
 }
 
+@media (min-width: 1600px) {
+
+    .card{
+        margin-left: 75px;
+    }
+}
+
