@@ -22,7 +22,7 @@
         <img *ngIf="film.Poster != 'N/A'" [src]="film.Poster" class="card-img-top" (click)="openLG(detalles)" alt="...">
         <img *ngIf="film.Poster === 'N/A'" src="../../assets/images/no.image.jpg" (click)="openLG(detalles)"
             class="card-img-top">
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush" (click)="openLG(detalles)">
             <li id="titulo" class="list-group-item"><strong>Titulo:</strong> {{film.Title}}</li>
             <li id="año" class="list-group-item"><strong>Año:</strong> {{film.Year}}</li>
         </ul>
